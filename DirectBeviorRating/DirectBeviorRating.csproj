@@ -17,5 +17,13 @@
   </ItemGroup>
   <ItemGroup>
     <None Remove="sqlite-net-pcl" />
+    <None Remove="Data\" />
+    <None Remove="Model\" />
+    <None Remove="Views\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Data\" />
+    <Folder Include="Model\" />
+    <Folder Include="Views\" />
   </ItemGroup>
 </Project>

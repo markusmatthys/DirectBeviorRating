@@ -10,7 +10,7 @@ namespace DirectBeviorRating
         {
             InitializeComponent();
 
-            MainPage = new MainPage();
+            MainPage = new ApplicationShell();
         }
 
         protected override void OnStart()

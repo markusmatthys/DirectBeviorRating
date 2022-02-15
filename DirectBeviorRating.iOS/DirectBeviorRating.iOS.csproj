@@ -133,4 +133,8 @@
       <Name>DirectBeviorRating</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\icon_about.png" />
+    <BundleResource Include="Resources\icon_feed.png" />
+  </ItemGroup>
 </Project>
