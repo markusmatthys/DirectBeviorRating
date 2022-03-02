@@ -3,10 +3,25 @@
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:views="clr-namespace:DirectBeviorRating.Views"
-    x:Class="DirectBeviorRating.ApplicationShell">
+    x:Class="DirectBeviorRating.ApplicationShell"
+    BackgroundColor="#efc3c7">
+
+    <Shell.Resources>
+        <Style x:Key="BaseStyle" 
+           TargetType="Element">
+            <Setter Property="Shell.TitleColor"
+                    Value="{AppThemeBinding Dark=Black}" />
+            <Setter Property="Shell.TabBarTitleColor"
+                    Value="{AppThemeBinding Light=White}" />
+
+       </Style>
+
+
+</Shell.Resources>
     <!-- Display a bottom tab bar containing two tabs -->
     <TabBar>
         <ShellContent Title="Schülerinnen"
+                      Style="{StaticResource BaseStyle}"
                       Icon="icon_feed.png"
                       ContentTemplate="{DataTemplate views:PupilsPage}" />
         <ShellContent Title="About"

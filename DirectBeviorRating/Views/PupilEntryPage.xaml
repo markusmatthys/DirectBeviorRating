@@ -2,8 +2,32 @@
 <ContentPage
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    x:Class="DirectBeviorRating.Views.PupilEntryPage">
-    <ContentPage.Content>
-        
-    </ContentPage.Content>
+    x:Class="DirectBeviorRating.Views.PupilEntryPage"
+    Title="Eingabe Schülerin">
+
+    <ContentPage.Resources>
+        <!-- Implicit styles -->
+        <Style TargetType="{x:Type Editor}">
+            <Setter Property="BackgroundColor"
+                    Value="{StaticResource AppBackgroundColor}" />
+        </Style>       
+    </ContentPage.Resources>
+
+    <!-- Layout children vertically -->
+    <StackLayout Margin="{StaticResource PageMargin}">
+        <Editor Placeholder="Namen eingeben"
+                Text="{Binding Name}"
+                HeightRequest="100" />
+        <!-- Layout children in three columns -->
+        <Grid ColumnDefinitions="*,*">
+            <Button Text="Speichern"
+                    Clicked="OnSaveButtonClicked" />
+            <Button Grid.Column="1"
+                    Text="Löschen"
+                    Clicked="OnDeleteButtonClicked"/>
+            <Button Grid.Column="2"
+                    Text="Fokus"
+                    Clicked="OnFokusButtonClicked" />
+        </Grid>
+    </StackLayout>
 </ContentPage>

@@ -2,36 +2,52 @@
 using System.Collections.Generic;
 using System.IO;
 using Xamarin.Forms;
+using System.Linq;
+using DirectBeviorRating.Model;
 
 namespace DirectBeviorRating.Views
 {
     public partial class PupilsPage : ContentPage
-    {
-        string _fileName = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "pupils.txt");
+    { 
 
-        public PupilsPage()      
+        public PupilsPage()
         {
-            InitializeComponent();// Read the file.
-            if (File.Exists(_fileName))
+            InitializeComponent();
+        }
+
+        protected override async void OnAppearing()
+        {
+            base.OnAppearing();
+
+            // Retrieve all the notes from the database, and set them as the
+            // data source for the CollectionView.
+            collectionView.ItemsSource = await App.Database.GetPupilsAsync();
+
+        }
+
+        async void OnAddClicked(object sender, EventArgs e)
+        {
+            // Navigate to the PupilEntryPage.
+            await Shell.Current.GoToAsync(nameof(PupilEntryPage));
+        }
+
+        async void OnSelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (e.CurrentSelection != null)
             {
-                editor.Text = File.ReadAllText(_fileName);
+                // Navigate to the PupilEntryPage, passing the ID as a query parameter.
+                Pupil pupil = (Pupil)e.CurrentSelection.FirstOrDefault();
+                await Shell.Current.GoToAsync($"{nameof(PupilEntryPage)}?{nameof(PupilEntryPage.ItemId)}={pupil.ID.ToString()}");
             }
         }
 
-        void OnSaveButtonClicked(object sender, EventArgs e)
+        void ToolbarItem_Clicked(System.Object sender, System.EventArgs e)
         {
-            // Save the file.
-            File.WriteAllText(_fileName, editor.Text);
+            Console.WriteLine("Toolbar Item Clicked");
         }
 
-        void OnDeleteButtonClicked(object sender, EventArgs e)
+        void collectionView_SelectionChanged(System.Object sender, Xamarin.Forms.SelectionChangedEventArgs e)
         {
-            // Delete the file.
-            if (File.Exists(_fileName))
-            {
-                File.Delete(_fileName);
-            }
-            editor.Text = string.Empty;
         }
     }
 }
