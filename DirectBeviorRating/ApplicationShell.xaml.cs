@@ -12,7 +12,8 @@ namespace DirectBeviorRating
         {
             InitializeComponent();
             Routing.RegisterRoute(nameof(PupilEntryPage), typeof(PupilEntryPage));
-            Routing.RegisterRoute(nameof(GoalsPage), typeof(GoalsPage));
+            Routing.RegisterRoute(nameof(FocusPage), typeof(FocusPage));
+            Routing.RegisterRoute(nameof(FocusEntryPage), typeof(FocusEntryPage));
         }
     }
 }

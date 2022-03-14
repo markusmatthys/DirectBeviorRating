@@ -8,18 +8,32 @@ namespace DirectBeviorRating
 {
     public partial class App : Application
     {
-        static BehaviorDatabase database;
+        static PupilDatabase pupilDatabase;
+        static FocusDatabase focusDatabase;
 
-        public static BehaviorDatabase Database
-       {
+        public static PupilDatabase PupilDatabase
+        {
             get
             {
-                if (database == null) {
-                    database = new BehaviorDatabase(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "Pupils.db3"));
+                if (pupilDatabase == null) {
+                    pupilDatabase = new PupilDatabase(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "Pupils.db3"));
                 }
-                return database;
+                return pupilDatabase;
             }
         }
+
+        public static FocusDatabase FocusDatabase
+        {
+            get
+            {
+                if (focusDatabase == null)
+                {
+                    focusDatabase = new FocusDatabase(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "Focus.db3"));
+                }
+                return focusDatabase;
+            }
+        }
+
 
         public App()
         {

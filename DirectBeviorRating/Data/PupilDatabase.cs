@@ -6,26 +6,26 @@ using System.Collections.Generic;
 
 namespace DirectBeviorRating.Data
 {
-    public class BehaviorDatabase
+    public class PupilDatabase
     {
-        readonly SQLiteAsyncConnection database;
+        readonly SQLiteAsyncConnection pupilDatabase;
 
-        public BehaviorDatabase(string dbPath)
+        public PupilDatabase(string dbPath)
         {
-            database = new SQLiteAsyncConnection(dbPath);
-            database.CreateTableAsync<Pupil>().Wait();
+            pupilDatabase = new SQLiteAsyncConnection(dbPath);
+            pupilDatabase.CreateTableAsync<Pupil>().Wait();
         }
 
         public Task<List<Pupil>> GetPupilsAsync()
         {
             //Get all pupils.
-            return database.Table<Pupil>().ToListAsync();
+            return pupilDatabase.Table<Pupil>().ToListAsync();
         }
 
         public Task<Pupil> GetPupilAsync(int id)
         {
             // Get a specific pupil.
-            return database.Table<Pupil>()
+            return pupilDatabase.Table<Pupil>()
                             .Where(i => i.ID == id)
                             .FirstOrDefaultAsync();
         }
@@ -35,19 +35,19 @@ namespace DirectBeviorRating.Data
             if (pupil.ID != 0)
             {
                 // Update an existing pupil.
-                return database.UpdateAsync(pupil);
+                return pupilDatabase.UpdateAsync(pupil);
             }
             else
             {
                 // Save a new pupil.
-                return database.InsertAsync(pupil);
+                return pupilDatabase.InsertAsync(pupil);
             }
         }
 
         public Task<int> DeletePupilAsync(Pupil pupil)
         {
             // Delete a pupil.
-            return database.DeleteAsync(pupil);
+            return pupilDatabase.DeleteAsync(pupil);
         }
     }
 }

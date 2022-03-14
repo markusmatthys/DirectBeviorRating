@@ -30,7 +30,7 @@ namespace DirectBeviorRating.Views
             {
                 int id = Convert.ToInt32(itemId);
                 // Retrieve the pupil and set it as BindingContext of the page.
-                Pupil pupil = await App.Database.GetPupilAsync(id);
+                Pupil pupil = await App.PupilDatabase.GetPupilAsync(id);
                 BindingContext = pupil;
             }
             catch (Exception)
@@ -45,7 +45,7 @@ namespace DirectBeviorRating.Views
             pupil.Date = DateTime.UtcNow;
             if (!string.IsNullOrWhiteSpace(pupil.Name))
             {
-                await App.Database.SavePupilAsync(pupil);
+                await App.PupilDatabase.SavePupilAsync(pupil);
             }
 
             // Navigate backwards
@@ -55,17 +55,17 @@ namespace DirectBeviorRating.Views
         async void OnDeleteButtonClicked(object sender, EventArgs e)
         {
             var pupil = (Pupil)BindingContext;
-            await App.Database.DeletePupilAsync(pupil);
+            await App.PupilDatabase.DeletePupilAsync(pupil);
 
             // Navigate backwards
             await Shell.Current.GoToAsync("..");
         }
 
-        async void OnFokusButtonClicked(System.Object sender, System.EventArgs e)
+        async void OnFokusButtonClicked(object sender, EventArgs e)
         {
-            await Shell.Current.GoToAsync(nameof(GoalsPage));
+            var pupil = (Pupil)BindingContext;
+            await Shell.Current.GoToAsync($"{nameof(FocusPage)}?{nameof(FocusPage.pupilIdAsString)}={pupil.ID.ToString()}");
         }
-
     }
 
    

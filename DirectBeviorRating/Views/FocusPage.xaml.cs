@@ -1,16 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.IO;
 using Xamarin.Forms;
 using System.Linq;
 using DirectBeviorRating.Model;
 
 namespace DirectBeviorRating.Views
 {
-    public partial class PupilsPage : ContentPage
-    { 
+    [QueryProperty(nameof(pupilIdAsString), nameof(pupilIdAsString))]
+    public partial class FocusPage : ContentPage
+    {
+        public string pupilIdAsString { get; set; }
 
-        public PupilsPage()
+        public FocusPage()
         {
             InitializeComponent();
         }
@@ -19,23 +20,24 @@ namespace DirectBeviorRating.Views
         {
             base.OnAppearing();
 
-            // Retrieve all the notes from the database, and set them as the
+            // Retrieve the focus from a pupil from the database, and set them as the
             // data source for the CollectionView.
-            collectionView.ItemsSource = await App.PupilDatabase.GetPupilsAsync();
+            int pupilIdAsInt = Convert.ToInt32(pupilIdAsString);
+            collectionView.ItemsSource = await App.FocusDatabase.GetFocusesAsync(pupilIdAsInt);
 
         }
 
         async void OnAddClicked(object sender, EventArgs e)
         {
             // Navigate to the PupilEntryPage.
-            await Shell.Current.GoToAsync(nameof(PupilEntryPage));
+            await Shell.Current.GoToAsync($"{nameof(FocusEntryPage)}?{nameof(FocusEntryPage.pupilIdAsString)}={pupilIdAsString}");
         }
 
         async void OnSelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             if (e.CurrentSelection != null)
             {
-                // Navigate to the PupilEntryPage, passing the ID as a query parameter.
+                // Navigate to the FocusEntryPage, passing the ID as a query parameter.
                 Pupil pupil = (Pupil)e.CurrentSelection.FirstOrDefault();
                 await Shell.Current.GoToAsync($"{nameof(PupilEntryPage)}?{nameof(PupilEntryPage.ItemId)}={pupil.ID.ToString()}");
             }
@@ -51,3 +53,4 @@ namespace DirectBeviorRating.Views
         }
     }
 }
+
