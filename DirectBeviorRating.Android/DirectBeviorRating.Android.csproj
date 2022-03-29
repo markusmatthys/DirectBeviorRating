@@ -97,6 +97,7 @@
     <ProjectReference Include="..\DirectBeviorRating\DirectBeviorRating.csproj">
       <Project>{2743134C-06A5-4F5C-96A3-1229F76A58AD}</Project>
       <Name>DirectBeviorRating</Name>
+      <ReferenceSourceTarget></ReferenceSourceTarget>
     </ProjectReference>
   </ItemGroup>
  <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />

@@ -21,12 +21,15 @@ namespace DirectBeviorRating.Data
         {
             //Get all Focus from a specific pupil.
             string pupilIdAsString = pupilId.ToString();
+            
+            //var listFocus = new { listFocus = new List<Focus> () };
+            //List<Focus> allFoci = await focusDatabase.Table<Focus>().ToListAsync();
 
 
             //return focusDatabase.QueryAsync<Focus>("SELECT * FROM [Focus] = pupilIdAsString");
-            //return await focusDatabase.Table<Focus>().Where(i => i.PupilId == pupilId).ToListAsync();
+            return await focusDatabase.Table<Focus>().Where(i => i.PupilId == pupilId).ToListAsync();
             //return focusDatabase.Table<Focus>().Where(i => i.PupilId == pupilId);
-            return await focusDatabase.Table<Focus>().ToListAsync();
+            //return await focusDatabase.Table<Focus>().ToListAsync();
             //return await focusDatabase.Table<Focus>().ToListAsync();
         }
 

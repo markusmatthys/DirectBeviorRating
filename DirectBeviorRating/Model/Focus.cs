@@ -5,15 +5,14 @@ namespace DirectBeviorRating.Model
 {
     public class Focus
     {
-
         public Focus ()
         {
 
         }
 
-        public Focus(string pupilIdAsString)
+        public Focus(int pupilIdAsInt)
         {
-            PupilId = Convert.ToInt32(pupilIdAsString);
+            PupilId = pupilIdAsInt;
         }
 
         [PrimaryKey, AutoIncrement]
@@ -21,6 +20,5 @@ namespace DirectBeviorRating.Model
         public int PupilId { get; set; }
         public string SpecificFocus { get; set; }
         public DateTime Date { get; set; }
-        //public string PupilIdAsString { get; }
     }
 }

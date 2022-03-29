@@ -25,7 +25,8 @@ namespace DirectBeviorRating.Data
         public Task<Pupil> GetPupilAsync(int id)
         {
             // Get a specific pupil.
-            return pupilDatabase.Table<Pupil>()
+            AsyncTableQuery<Pupil> asyncTableQuery = pupilDatabase.Table<Pupil>();
+            return asyncTableQuery
                             .Where(i => i.ID == id)
                             .FirstOrDefaultAsync();
         }

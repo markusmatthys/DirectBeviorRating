@@ -28,6 +28,7 @@
         <ShellContent Title="Schülerinnen"
                       Style="{StaticResource BaseStyle}"
                       Icon="icon_feed.png"
+                      Route="PupilsPage"
                       ContentTemplate="{DataTemplate views:PupilsPage}" />
         <ShellContent Title="About"
                       Style="{StaticResource BaseStyle}"

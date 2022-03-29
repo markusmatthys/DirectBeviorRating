@@ -6,16 +6,37 @@ using DirectBeviorRating.Model;
 
 namespace DirectBeviorRating.Views
 {
-    //[QueryProperty(nameof(pupilIdAsString), nameof(pupilIdAsString))]
+    [QueryProperty(nameof(PupilIdAsString), nameof(PupilIdAsString))]
     public partial class FocusEntryPage : ContentPage
     {
-        public string pupilIdAsString { get; set; }
+
+        public string PupilIdAsString {
+
+            set {
+                InitializeFocus(value);
+            }
+        }
 
         public FocusEntryPage()
         {
             InitializeComponent();
-            Focus aFocus = new Focus(pupilIdAsString: pupilIdAsString);
-            BindingContext = aFocus;
+            BindingContext = new Focus();
+
+        }
+        public void InitializeFocus(string itemId)
+        {
+            try
+            {
+                int pupilId = Convert.ToInt32(itemId);
+                // Retrieve the pupil and set it as BindingContext of the page.
+                Focus focus = new Model.Focus();
+                focus.PupilId = pupilId;
+                BindingContext = focus;
+            }
+            catch (Exception)
+            {
+                Console.WriteLine("Failed to initialize focus.");
+            }
         }
 
         async void OnSaveButtonClicked(System.Object sender, System.EventArgs e)
