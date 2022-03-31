@@ -10,12 +10,13 @@ namespace DirectBeviorRating.Views
     public partial class FocusEntryPage : ContentPage
     {
 
-        public string PupilIdAsString {
 
+        public string PupilIdAsString {
             set {
                 InitializeFocus(value);
             }
         }
+        
 
         public FocusEntryPage()
         {
@@ -43,6 +44,7 @@ namespace DirectBeviorRating.Views
         {
             var focus = (Focus)BindingContext;
             focus.Date = DateTime.UtcNow;
+            string PupilAsString = focus.PupilId.ToString();
             if (!string.IsNullOrWhiteSpace(focus.SpecificFocus))
             {
                 await App.FocusDatabase.SaveFocusAsync(focus);
@@ -50,7 +52,8 @@ namespace DirectBeviorRating.Views
 
 
             // Navigate backwards
-            await Shell.Current.GoToAsync("..");
+            await Shell.Current.GoToAsync($"{("FocusPage")}?{nameof(FocusPage.pupilIdAsString)}={PupilAsString}");
+            //await Shell.Current.GoToAsync("FocusPage");
         }
         async void OnDeleteButtonClicked(object sender, EventArgs e)
         {

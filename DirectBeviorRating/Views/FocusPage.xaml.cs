@@ -30,6 +30,7 @@ namespace DirectBeviorRating.Views
         async void OnAddClicked(object sender, EventArgs e)
         {
             // Navigate to the PupilEntryPage.
+
             await Shell.Current.GoToAsync($"{nameof(FocusEntryPage)}?{nameof(FocusEntryPage.PupilIdAsString)}={pupilIdAsString}");
         }
 

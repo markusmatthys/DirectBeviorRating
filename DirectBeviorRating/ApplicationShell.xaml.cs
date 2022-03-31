@@ -11,10 +11,10 @@ namespace DirectBeviorRating
         public ApplicationShell()
         {
             InitializeComponent();
-            Routing.RegisterRoute(nameof(PupilsPage), typeof(PupilsPage));
-            Routing.RegisterRoute(nameof(PupilEntryPage), typeof(PupilEntryPage));
-            Routing.RegisterRoute(nameof(FocusPage), typeof(FocusPage));
-            Routing.RegisterRoute(nameof(FocusEntryPage), typeof(FocusEntryPage));
+            Routing.RegisterRoute("PupilPage", typeof(PupilsPage));
+            Routing.RegisterRoute("PupilEntryPage", typeof(PupilEntryPage));
+            Routing.RegisterRoute("FocusPage", typeof(FocusPage));
+            Routing.RegisterRoute("FocusEntryPage", typeof(FocusEntryPage));
         }
     }
 

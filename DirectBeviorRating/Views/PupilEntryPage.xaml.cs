@@ -49,7 +49,7 @@ namespace DirectBeviorRating.Views
             }
 
             // Navigate backwards
-            await Shell.Current.GoToAsync("..");
+            await Shell.Current.GoToAsync("PupilPage");
         }
 
         async void OnDeleteButtonClicked(object sender, EventArgs e)
